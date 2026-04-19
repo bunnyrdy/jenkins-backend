@@ -18,7 +18,7 @@ pipeline {
             steps{
                 script{
                 sh """
-                def records = readJSON file: 'backend/package.json'
+                def records = readJSON file: 'package.json'
                 appVersion = packageJson.version
                 echo "Version is: $appVersion"
                 """
