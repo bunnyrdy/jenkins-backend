@@ -25,64 +25,8 @@ pipeline {
                 }
             }
         }
-        stage('Test'){
-            steps{
-                script{
-                sh """
-                echo "hello,this is Test"
-                """
-                }
-            }
-        }
-         stage('Deploy'){
-            // input {
-            //     message "Should we continue?"
-            //     ok "Yes, we should."
-            //     submitter "alice,bob"
-            //     parameters {
-            //         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-            //     }
-            // }
-            when { 
-                environment name: 'DEPLOY_TO', value: 'production'
-            }
-            steps{
-                script{
-                sh """
-                echo "hello,this is deploy"
-                """
-                }
-            }
-        }
-         stage('Parallel Stages') {
-            parallel {
-                stage('STAGE-1') {
-                    
-                    steps {
-                        script{
-                            sh """
-                                echo "Hello, this is STAGE-1"
-                                sleep 15
-                            """
-                        }
-                    }
-                }
-                stage('STAGE-2') {
-                    
-                    steps {
-                        script{
-                            sh """
-                                echo "Hello, this is STAGE-2"
-                                sleep 15
-                            """
-                        }
-                    }
-                }
-            }
-        
-        }
-    }
 
+    }
     post {
             always {
                 echo 'i will run if it is success or fail'
