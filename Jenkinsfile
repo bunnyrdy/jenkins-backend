@@ -11,13 +11,13 @@ pipeline {
         timeout(time: 30, unit:'MINUTES')
     }
     
-    stages{
-        stage('Read Version'){
-            steps{
-                script{
-                def records = readJSON file: 'package.json'
-                env.appVersion = records.version
-                echo "Version is: $appVersion"
+    stages {
+        stage('Read Version') {
+            steps {
+                script {
+                def packageJson = readJSON file: 'package.json'
+                env.appVersion = packageJson.version
+                echo "Version is: ${env.appVersion}"
                 }
             }
 
