@@ -10,15 +10,13 @@ pipeline {
         disableConcurrentBuilds()
         timeout(time: 30, unit:'MINUTES')
     }
-    parameters {
-        string(name: 'STATEMENT', defaultValue: 'hello; ls /', description: 'What should I say?')
-    }
+    
     stages{
         stage('Read Version'){
             steps{
                 script{
                 def records = readJSON file: 'package.json'
-                appVersion = packageJson.version
+                env.appVersion = records.version
                 echo "Version is: $appVersion"
                 }
             }
