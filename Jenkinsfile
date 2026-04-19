@@ -20,9 +20,10 @@ pipeline {
                 def records = readJSON file: 'package.json'
                 appVersion = packageJson.version
                 echo "Version is: $appVersion"
+                }
             }
-        }
 
+        }
     }
     post {
             always {
